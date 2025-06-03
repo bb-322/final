@@ -14,8 +14,9 @@ GRAVITY_SPEED = 10
 
 pygame.init()
 
-screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
+bg_image = pygame.transform.scale(pygame.image.load(os.path.join(IMAGE_DIR, 'bg.png')), (SCREEN_WIDTH, SCREEN_HEIGHT))
 
+screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
 class Sprite(pygame.Rect):
     __list_sprites = []
@@ -328,7 +329,8 @@ def start_game():
     game_run = True
     timer = pygame.time.Clock()
     while game_run:
-        screen.fill((37, 64, 138))
+        # screen.fill((37, 64, 138))
+        screen.blit(bg_image, (0,0))
         Sprite.process_sprites()
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
