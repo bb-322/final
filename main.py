@@ -264,7 +264,6 @@ class Enemy(Entity):
         for bullet in dude.bullets:
             if self.colliderect(bullet):
                 self._remove()
-                bullet._remove()
                 dude.bullets.remove(bullet)
                 enemies.remove(self)
                 break
@@ -288,7 +287,7 @@ class Enemy(Entity):
         self._death()
         return super()._process()
     
-map_matrix = [
+map1_matrix = [
     [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
     [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,1,1,1,1,0,0,0,0,1],
     [1,0,0,0,0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,1,1,1,0,0,0,0,1],
@@ -312,7 +311,6 @@ map_matrix = [
 ]
 
 
-Block.create_by_map(map_matrix)
 dude = Dude(50,70,50,70,'dude2.png', speed=5)
 def create_base_enemies():
     return [
@@ -326,6 +324,7 @@ def create_base_enemies():
 enemies = create_base_enemies()
 
 def start_game():
+    Block.create_by_map(map1_matrix)
     game_run = True
     timer = pygame.time.Clock()
     while game_run:
